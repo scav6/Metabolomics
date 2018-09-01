@@ -1,0 +1,28 @@
+
+Metabolomics
+QC short report
+Data File: ; QC_Metabolomics_180827173733
+Quan Peak Table 
+Component Name ; Expected RT ; RT ; Width ; Area ; Area % ; Height ; S/N ; System Suitability
+Glucose ; N/A ; N/A ; N/A ; N/A ; N/A ; N/A ; N/A ; N/A
+Reserpine ; 3.46 ; 3.49 ; 0.84 ; 10962060 ; 14.36 ; 816317 ; 801.39 ; Passed: S R W O N C D; Failed: T B
+Taurocholic_acid ; 4.46 ; 4.41 ; 0.69 ; 4062149 ; 5.32 ; 226396 ; 404.69 ; Passed: S R W T O B N D; Failed: C
+Leu_enkephalin ; 4.52 ; 4.46 ; 0.78 ; 15565388 ; 20.39 ; 878979 ; 464.13 ; Passed: S R W T O B N D; Failed: C
+Benzimidazole ; 5.94 ; 5.99 ; 0.76 ; 7416721 ; 9.72 ; 482883 ; 371.83 ; Passed: S R W T O B N D; Failed: C
+CHAPS ; 7.88 ; 7.83 ; 0.80 ; 3565938 ; 4.67 ; 153933 ; 126.15 ; Passed: S R W T O B N D; Failed: C
+Phenylalanine ; 9.60 ; 9.66 ; 0.70 ; 4929350 ; 6.46 ; 301638 ; 347.22 ; Passed: S R W T O B N D; Failed: C
+Lactic_acid ; 9.96 ; 9.84 ; 0.62 ; 2568227 ; 3.36 ; 168812 ; 220.06 ; Passed: S R W T B N D; Failed: O C
+Leucine ; 10.20 ; 10.27 ; 0.53 ; 1947634 ; 2.55 ; 143348 ; 163.24 ; Passed: S R W O B N C D; Failed: T
+HEPES ; 10.69 ; 10.74 ; 0.64 ; 5678326 ; 7.44 ; 374430 ; 184.05 ; Passed: S R W T O B N D; Failed: C
+EPPS ; 10.72 ; 10.82 ; 0.62 ; 4762439 ; 6.24 ; 325477 ; 243.63 ; Passed: S R W T O B N D; Failed: C
+Orotic_acid ; 10.80 ; 10.55 ; 0.77 ; 3303939 ; 4.33 ; 150447 ; 91.56 ; Passed: R T B N D; Failed: S W O C
+Isoleucine ; 11.00 ; 10.78 ; 0.60 ; 1458169 ; 1.91 ; 100970 ; 129.61 ; Passed: S R W T B N C D; Failed: O
+Bradykinin ; 14.16 ; 15.05 ; 0.66 ; 3670094 ; 4.81 ; 171358 ; 187.38 ; Passed: R T B N D; Failed: S W O C
+Trizma ; 14.98 ; 15.81 ; 0.79 ; 3310605 ; 4.34 ; 186486 ; 197.84 ; Passed: S R W T O B N C D
+Alanine ; 15.00 ; 14.47 ; 0.34 ; 232617 ; 0.30 ; 25974 ; 84.29 ; Passed: S R T O B N D; Failed: W C
+Succinic_acid ; 15.50 ; 15.25 ; 0.72 ; 1299750 ; 1.70 ; 83156 ; 115.46 ; Passed: R T O B N D; Failed: S W C
+G6P ; 16.79 ; 16.65 ; 0.74 ; 1595639 ; 2.09 ; 106987 ; 278.00 ; Passed: S R W T O B N C D
+Sample Header
+Data File: ; QC_Metabolomics_180827173733
+Original Data Path: ; D:\QC_Metabolomics
+Acquisition Date: ; 08/27/18 05:39:24 PM

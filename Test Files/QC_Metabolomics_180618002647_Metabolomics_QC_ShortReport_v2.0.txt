@@ -1,0 +1,28 @@
+
+Metabolomics
+QC short report
+Data File: ; QC_Metabolomics_180618002647
+Quan Peak Table 
+Component Name ; Expected RT ; RT ; Width ; Area ; Area % ; Height ; S/N ; System Suitability
+Glucose ; N/A ; N/A ; N/A ; N/A ; N/A ; N/A ; N/A ; N/A
+Reserpine ; 3.46 ; 3.56 ; 0.87 ; 60255293 ; 29.21 ; 3557209 ; 3737.34 ; Passed: S R W T B N D; Failed: O C
+Taurocholic_acid ; 4.46 ; 4.49 ; 0.68 ; 7993312 ; 3.87 ; 466841 ; 463.64 ; Passed: S R W T O B N D; Failed: C
+Leu_enkephalin ; 4.52 ; 4.47 ; 0.89 ; 31619299 ; 15.33 ; 1818178 ; 3094.96 ; Passed: S R W T O B N C D
+Benzimidazole ; 5.94 ; 5.96 ; 0.80 ; 22067878 ; 10.70 ; 1492153 ; 509.52 ; Passed: S R W T O B N D; Failed: C
+CHAPS ; 7.88 ; 7.86 ; 0.89 ; 5290988 ; 2.56 ; 225726 ; 143.97 ; Passed: S R W T O B N C D
+Phenylalanine ; 9.60 ; 9.64 ; 1.01 ; 10164063 ; 4.93 ; 622540 ; 1010.80 ; Passed: S R W T O B N C D
+Lactic_acid ; 9.96 ; 9.93 ; 0.74 ; 2145704 ; 1.04 ; 143068 ; 275.53 ; Passed: S R W T O B N C D
+Leucine ; 10.20 ; 10.22 ; 0.45 ; 2093209 ; 1.01 ; 149510 ; 200.36 ; Passed: S R W T O B N D; Failed: C
+HEPES ; 10.69 ; 10.76 ; 0.76 ; 5712212 ; 2.77 ; 350996 ; 411.95 ; Passed: S R W T B N D; Failed: O C
+EPPS ; 10.72 ; 10.78 ; 0.62 ; 4798461 ; 2.33 ; 318416 ; 144.46 ; Passed: S R W T O B N C D
+Orotic_acid ; 10.80 ; 10.69 ; 0.89 ; 13184044 ; 6.39 ; 538161 ; 294.73 ; Passed: S R W T O B N D; Failed: C
+Isoleucine ; 11.00 ; 11.13 ; 0.19 ; 64463 ; 0.03 ; 9720 ; 13.03 ; Passed: S R W T B N D; Failed: O C
+Bradykinin ; 14.16 ; 14.40 ; 1.18 ; 18761777 ; 9.09 ; 508732 ; 232.17 ; Passed: S R T O B N D; Failed: W C
+Trizma ; 14.98 ; 15.15 ; 0.99 ; 17723565 ; 8.59 ; 878176 ; 1156.13 ; Passed: S R W T O B N C D
+Alanine ; 15.00 ; 14.44 ; 1.07 ; 1836503 ; 0.89 ; 90166 ; 216.43 ; Passed: S R T O B N D; Failed: W C
+Succinic_acid ; 15.50 ; 15.35 ; 0.99 ; 1810435 ; 0.88 ; 101508 ; 235.60 ; Passed: R T B N D; Failed: S W O C
+G6P ; 16.79 ; 16.75 ; 0.59 ; 795070 ; 0.39 ; 56634 ; 103.10 ; Passed: R T O B N D; Failed: S W C
+Sample Header
+Data File: ; QC_Metabolomics_180618002647
+Original Data Path: ; D:\QC_Metabolomics
+Acquisition Date: ; 06/18/18 12:28:37 AM

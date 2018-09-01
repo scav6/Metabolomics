@@ -1,0 +1,17 @@
+metric_type:metric_name:metric_symbol(F only):metric_description
+F:Symmetry: S: A peak passes this test if its calculated symmetry is greater than the symmetry threshold specified in the System Suitability page of Quan View in Processing Setup.
+F:Resolution: R: A peak passes this test if its calculated resolution is greater than the resolution threshold specified in the System Suitability page of Quan View in Processing Setup.
+F:Peak Width: W: A peak passes this test if its width falls between the minimum and maximum values specified in the System Suitability page of Quan View in Processing Setup.
+F:Tailing: T: A peak passes this test if its calculated tailing falls below the threshold specified in the System Suitability page of Quan View in Processing Setup.
+F:Column Overload: O: A peak passes this test if its calculated overloading falls below the threshold specified in the System Suitability page of Quan View in Processing Setup.
+F:Baseline Clipping: B: A peak passes this test if baseline clipping is not detected.
+F:Signal to Noise Ratio: N: A peak passes this test if its signal-to-noise ratio falls above the threshold specified in the System Suitability page of Quan View in Processing Setup.
+F:Concave: C: A peak passes this test if it does not exhibit a concave depression due to noise.
+F:Saturation: D: A peak passes this test if the detector did not saturate during data acquisition.
+M:Expected Retention Time
+M:Retention Time
+M:Width
+M:Area
+M:Area Percent
+M:Height
+M:Signal Noise

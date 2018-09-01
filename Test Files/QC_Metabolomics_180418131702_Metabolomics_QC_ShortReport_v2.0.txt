@@ -1,0 +1,28 @@
+
+Metabolomics
+QC short report
+Data File: ; QC_Metabolomics_180418131702
+Quan Peak Table 
+Component Name ; Expected RT ; RT ; Width ; Area ; Area % ; Height ; S/N ; System Suitability
+Glucose ; N/A ; N/A ; N/A ; N/A ; N/A ; N/A ; N/A ; N/A
+Reserpine ; 3.46 ; 3.48 ; 0.92 ; 35229319 ; 15.74 ; 2037322 ; 10056.98 ; Passed: S R W O N D; Failed: T B C
+Taurocholic_acid ; 4.46 ; 4.43 ; 0.85 ; 9938182 ; 4.44 ; 587381 ; -2.00 ; Passed: S R W T O N D; Failed: B C
+Leu_enkephalin ; 4.52 ; 4.48 ; 0.76 ; 25734911 ; 11.50 ; 1514418 ; 402.81 ; Passed: S R W T O B N C D
+Benzimidazole ; 5.94 ; 5.97 ; 0.92 ; 13368518 ; 5.97 ; 844207 ; 3309.81 ; Passed: S R W T O B N D; Failed: C
+CHAPS ; 7.88 ; 7.83 ; 0.92 ; 8484380 ; 3.79 ; 381210 ; 265.59 ; Passed: S R W T O B N D; Failed: C
+Phenylalanine ; 9.60 ; 9.57 ; 0.72 ; 9214668 ; 4.12 ; 604535 ; 516.15 ; Passed: S R W T O B N C D
+Lactic_acid ; 9.96 ; 9.97 ; 0.85 ; 3011366 ; 1.35 ; 165656 ; 310.90 ; Passed: S R W T O B N D; Failed: C
+Leucine ; 10.20 ; 10.19 ; 0.48 ; 2637812 ; 1.18 ; 202037 ; 188.49 ; Passed: S R W T O B N C D
+HEPES ; 10.69 ; 10.74 ; 0.81 ; 16103831 ; 7.20 ; 981072 ; 667.19 ; Passed: S R W T O B N C D
+EPPS ; 10.72 ; 10.73 ; 0.77 ; 15181620 ; 6.78 ; 1002761 ; 693.20 ; Passed: S R W T O B N D; Failed: C
+Orotic_acid ; 10.80 ; 10.89 ; 0.94 ; 16047064 ; 7.17 ; 614219 ; 404.41 ; Passed: R T B N D; Failed: S W O C
+Isoleucine ; 11.00 ; 10.71 ; 0.60 ; 2081655 ; 0.93 ; 130456 ; 142.00 ; Passed: S R W T O B N D; Failed: C
+Bradykinin ; 14.16 ; 14.26 ; 1.18 ; 38724998 ; 17.31 ; 1117161 ; 585.25 ; Passed: S R T O B N D; Failed: W C
+Trizma ; 14.98 ; 14.98 ; 0.98 ; 22506600 ; 10.06 ; 1153253 ; 748.34 ; Passed: S R W T O B N D; Failed: C
+Alanine ; 15.00 ; 14.41 ; 0.51 ; 1171202 ; 0.52 ; 103392 ; 171.38 ; Passed: R W T O B N D; Failed: S C
+Succinic_acid ; 15.50 ; 15.38 ; 0.56 ; 1751287 ; 0.78 ; 138043 ; 231.50 ; Passed: S R T B N D; Failed: W O C
+G6P ; 16.79 ; 16.75 ; 0.75 ; 2565578 ; 1.15 ; 156290 ; 468.47 ; Passed: R W T O B N D; Failed: S C
+Sample Header
+Data File: ; QC_Metabolomics_180418131702
+Original Data Path: ; D:\QC_Metabolomics
+Acquisition Date: ; 04/18/18 01:18:52 PM
