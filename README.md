@@ -12,4 +12,4 @@ A MySQL database is required.
 * Demo visualizations in current interface
 
 ### ER Diagram
-![ER](Metabolomics QC ER Diagram.jpg)
+<img src="Metabolomics QC ER Diagram.jpg" />
