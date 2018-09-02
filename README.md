@@ -9,7 +9,8 @@ A MySQL database is required.
 
 ### Next Development
 * A control module to batch insert all the test files.  
+* Incorporate Ideom and .raw processing outputs
 * Demo visualizations in current interface
 
 ### ER Diagram
-<img src="./Metabolomics QC ER Diagram.jpg" />
+<img src="Metabolomics QC ER Diagram.jpg" />
