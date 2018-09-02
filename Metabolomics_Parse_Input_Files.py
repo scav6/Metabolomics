@@ -205,7 +205,6 @@ if __name__ == "__main__":
 	user = "root"
 	password = "password"
 	database = "metabqc"
-
 	db = MetabDBSetUp(user, password, database)
 	new_input = MetabParseFile('./Test Files/QC_Metabolomics_180410132208_Metabolomics_QC_ShortReport_v2.0.txt', db)
 	new_input.enter_data()
