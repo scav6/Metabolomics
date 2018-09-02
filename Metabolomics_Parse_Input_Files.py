@@ -203,7 +203,7 @@ class MetabParseFile:
    
 if __name__ == "__main__":
 	user = "root"
-	password = "raja2417"
+	password = "password"
 	database = "metabqc"
 
 	db = MetabDBSetUp(user, password, database)
