@@ -1,13 +1,13 @@
 from Metabolomics_Database_SetUp import MetabDBSetUp
-
+import glob
+import os
 
 class MetabParseFile:
-	
-	'''
-	This module will parse the data from one Metabolomics text file
-	and insert it into the database.
-	'''
-    
+    '''
+    	This module will parse the data from one Metabolomics text file
+    	and insert it into the database.
+    '''
+
     def __init__(self, filename, db):
         self.filename = filename
         self.db = db
@@ -20,6 +20,7 @@ class MetabParseFile:
         self.metric_names = []
         
     def enter_data(self):
+        print("Inserting " + self.filename)
         self.convert_to_mysql_datetime_string()
         self.insert_qc_run_data()
         self.run_id = self.get_run_id()
@@ -28,6 +29,7 @@ class MetabParseFile:
         self.get_measurements_values()
         self.insert_measurement_values()
         self.insert_measurement_flags()
+        print("Finished Inserting " + self.filename)
         
     def get_run_data(self):    
         with open(self.filename, 'r') as infile:
@@ -82,12 +84,12 @@ class MetabParseFile:
         sql = "SELECT run_id FROM metab_qc_run WHERE data_file = '" + self.data_file + "'"
         try:
             self.db.cursor.execute(sql)
-            run_id =  self.db.cursor.fetchall()
+            run_id = self.db.cursor.fetchall()
+            return run_id[0]
         except Exception as e:
             print(e)
-            
-        return run_id[0]
-    
+
+
     def get_components(self):
         # creates a component dict each with a list of metrics values
         with open('components.txt', 'r') as infile:
@@ -120,6 +122,7 @@ class MetabParseFile:
                     try:
                         self.components_pass[component] = self.get_symbols(in_data[8])
                     except IndexError:
+                        # not displaying, in_data size?
                         print("NO PASS DATA")
                         
                     try:
@@ -142,27 +145,31 @@ class MetabParseFile:
                 
             # loops through each metric name and value and inserts
             for i in range(len(self.metric_names)):
-                get_sql = "SELECT metric_id FROM metric WHERE metric_name = '" + self.metric_names[i] + "'"
-                try:
-                    self.db.cursor.execute(get_sql)
-                    metric_id =  self.db.cursor.fetchall()
-                except Exception as e:
-                    print(e)
-                    
-                ins_sql = "INSERT INTO measurement VALUES('" + str(metric_id[0][0]) + "','" + str(comp_id[0][0]) + "','"                + str(self.run_id[0]) + "','" + self.components[key][i].strip() + "')"
-                try:
-                    self.db.cursor.execute(ins_sql)
-                except Exception as e:
-                    print(e)
-                    
-                self.db.db.commit()
+                value = self.components[key][i].strip()
+                if value != "N/A":
+                    get_sql = "SELECT metric_id FROM metric WHERE metric_name = '" + self.metric_names[i] + "'"
+                    try:
+                        self.db.cursor.execute(get_sql)
+                        metric_id =  self.db.cursor.fetchall()
+                    except Exception as e:
+                        print(e)
+                        continue
+
+                    ins_sql = "INSERT INTO measurement VALUES('" + str(metric_id[0][0]) + "','" + str(comp_id[0][0]) + "','" \
+                              + str(self.run_id[0]) + "','" + value + "')"
+                    try:
+                        self.db.cursor.execute(ins_sql)
+                    except Exception as e:
+                        print(e)
+                        print(self.components[key][i].strip())
+                    self.db.db.commit()
             
             # store component_id for flag insert
             self.components[key] = [comp_id[0][0]]
                 
     def insert_measurement_flags(self):
-		# set up: flag arg for pass/fail
-		
+        # set up: flag arg for pass/fail
+
         # passed metrics
         for component, flags in self.components_pass.items():
             for symbol in flags:
@@ -172,6 +179,7 @@ class MetabParseFile:
                     metric_id =  self.db.cursor.fetchall()
                 except Exception as e:
                     print(e)
+                    continue
                     
                 ins_sql = "INSERT INTO measurement VALUES('" + str(metric_id[0][0]) + "','" + str(self.components[component][0])                         + "','" + str(self.run_id[0]) + "','1')" 
                 try:
@@ -190,6 +198,7 @@ class MetabParseFile:
                     metric_id =  self.db.cursor.fetchall()
                 except Exception as e:
                     print(e)
+                    continue
                     
                 ins_sql = "INSERT INTO measurement VALUES('" + str(metric_id[0][0]) + "','" + str(self.components[component][0])                         + "','" + str(self.run_id[0]) + "','0')" 
                 try:
@@ -200,14 +209,15 @@ class MetabParseFile:
             self.db.db.commit()
             
 
-   
 if __name__ == "__main__":
-	user = "root"
-	password = "password"
-	database = "metabqc"
-	db = MetabDBSetUp(user, password, database)
-	new_input = MetabParseFile('./Test Files/QC_Metabolomics_180410132208_Metabolomics_QC_ShortReport_v2.0.txt', db)
-	new_input.enter_data()
+    user = "root"
+    password = "raja2417"
+    database = "metabqc"
+    db = MetabDBSetUp(user, password, database)
+    in_files = glob.glob("./Test Files/*.txt")
+    for file in in_files:
+        new_input = MetabParseFile(file, db)
+        new_input.enter_data()
 
 
 

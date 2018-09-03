@@ -5,9 +5,10 @@ import MySQLdb
 
 class MetabDBSetUp:
     '''
-	Database access module
-	When run as a script sets up Metabolomics DB
-	'''
+    Database access module
+    When run as a script sets up Metabolomics DB
+    '''
+
     # CONSTRUCTOR connects to database as user with pword
     def __init__(self, user, pword, database):
         self.username = user
@@ -16,7 +17,8 @@ class MetabDBSetUp:
         try:
             self.db = MySQLdb.connect("localhost", self.username, self.password, self.database)
             self.cursor = self.db.cursor()
-        except:
+        except Exception as e:
+            print(e)
             print("Database load error ")
     
     # DESCRIPTION FUNCTIONS details about the database
@@ -49,10 +51,11 @@ class MetabDBSetUp:
         self.create_table_measurement()
         
     def create_table_metric_type(self):
-        sql = "CREATE TABLE IF NOT EXISTS metric_type ("              
-		"type CHAR(1) NOT NULL,"                
-		"type_description TEXT,"                
-		"PRIMARY KEY(type)) "
+        sql = "CREATE TABLE IF NOT EXISTS metric_type ("\
+            "type CHAR(1) NOT NULL," \
+            "type_description TEXT," \
+            "PRIMARY KEY(type)) "
+
                 
         try:
             self.cursor.execute(sql)
@@ -61,10 +64,10 @@ class MetabDBSetUp:
         
             
     def create_table_sample_component(self):
-        sql = "CREATE TABLE IF NOT EXISTS sample_component ("                
-		"component_id INT AUTO_INCREMENT NOT NULL,"                
-		"component_name TINYTEXT,"                
-		"component_description TEXT,"                
+        sql = "CREATE TABLE IF NOT EXISTS sample_component (" \
+		"component_id INT AUTO_INCREMENT NOT NULL," \
+		"component_name TINYTEXT," \
+		"component_description TEXT," \
 		"PRIMARY KEY(component_id)) "
                 
         try:
@@ -74,10 +77,10 @@ class MetabDBSetUp:
             
     def create_table_qc_run(self):
         # no id to avoid accidental duplicates ??
-        sql = "CREATE TABLE IF NOT EXISTS metab_qc_run ("                
-		"run_id INT AUTO_INCREMENT NOT NULL,"                
-		"data_file TINYTEXT,"                
-		"date_time DATETIME,"                
+        sql = "CREATE TABLE IF NOT EXISTS metab_qc_run (" \
+		"run_id INT AUTO_INCREMENT NOT NULL," \
+		"data_file TINYTEXT," \
+		"date_time DATETIME," \
 		"PRIMARY KEY(run_id)) "
                 
         try:
@@ -86,13 +89,13 @@ class MetabDBSetUp:
             print(e)
             
     def create_table_metric(self):
-        sql = "CREATE TABLE IF NOT EXISTS metric ("                
-		"metric_id INT AUTO_INCREMENT NOT NULL,"                
-		"metric_name TINYTEXT,"                
-		"metric_symbol TINYTEXT,"                
-		"metric_description TEXT,"                
-		"out_type CHAR(1) NOT NULL,"                
-		"PRIMARY KEY(metric_id),"                
+        sql = "CREATE TABLE IF NOT EXISTS metric (" \
+		"metric_id INT AUTO_INCREMENT NOT NULL," \
+		"metric_name TINYTEXT," \
+		"metric_symbol TINYTEXT," \
+		"metric_description TEXT,"  \
+		"out_type CHAR(1) NOT NULL," \
+		"PRIMARY KEY(metric_id)," \
 		"FOREIGN KEY (out_type) REFERENCES metric_type(type))"
                 
         try:
@@ -103,14 +106,14 @@ class MetabDBSetUp:
     def create_table_measurement(self):
         # watch FLOAT for value data type
         
-        sql = "CREATE TABLE IF NOT EXISTS measurement ("                
-		"metric_id INT NOT NULL,"                
-		"component_id INT NOT NULL,"                
-		"run_id INT NOT NULL,"                
-		"value FLOAT(18, 3),"                
-		"PRIMARY KEY(metric_id, component_id, run_id),"                
-		"FOREIGN KEY (metric_id) REFERENCES metric(metric_id),"                
-		"FOREIGN KEY (component_id) REFERENCES sample_component(component_id),"                
+        sql = "CREATE TABLE IF NOT EXISTS measurement (" \
+		"metric_id INT NOT NULL," \
+		"component_id INT NOT NULL," \
+		"run_id INT NOT NULL," \
+		"value FLOAT(18, 3)," \
+		"PRIMARY KEY(metric_id, component_id, run_id)," \
+		"FOREIGN KEY (metric_id) REFERENCES metric(metric_id)," \
+		"FOREIGN KEY (component_id) REFERENCES sample_component(component_id)," \
 		"FOREIGN KEY (run_id) REFERENCES metab_qc_run(run_id))"
                 
         try:
@@ -155,8 +158,8 @@ class MetabDBSetUp:
         with open('components.txt', 'r') as infile:
             for line in infile:
                 component = line.strip()
-                sql = "INSERT INTO sample_component(component_id, component_name) VALUES (NULL, " + "'"
-				+ str(component) + "'" + ")"  
+                sql = "INSERT INTO sample_component(component_id, component_name) VALUES (NULL, " + "'" \
+				+ str(component) + "'" + ")"
                 
                 try:
                     self.cursor.execute(sql)
@@ -171,7 +174,7 @@ class MetabDBSetUp:
             for line in infile:
                 in_data = line.strip().split(':')
                 if in_data[0] == 'F':
-                    sql = "INSERT INTO metric VALUES (NULL," + "'" + in_data[1].strip() + "'," + "'"
+                    sql = "INSERT INTO metric VALUES (NULL," + "'" + in_data[1].strip() + "'," + "'" \
 					+ in_data[2].strip() + "'," + "'" + in_data[3].strip() + "'," + "'" + in_data[0].strip() + "')"
                     try:
                         self.cursor.execute(sql)
@@ -179,7 +182,7 @@ class MetabDBSetUp:
                     except Exception as e:
                         print(e)
                 elif in_data[0] == 'M':
-                    sql = "INSERT INTO metric(metric_id,metric_name,out_type) VALUES (NULL,"
+                    sql = "INSERT INTO metric(metric_id,metric_name,out_type) VALUES (NULL," \
 					+  "'" + in_data[1].strip() + "','" + in_data[0].strip() + "')"
                     try:
                         self.cursor.execute(sql)
@@ -205,10 +208,10 @@ class MetabDBSetUp:
 
 if __name__ == "__main__":
     user = "root"
-    password = "password"
+    password = "raja2417"
     database = "metabqc"
-	db = MetabDBSetUp(user, password, database)
-    #db.drop_all_tables()
+    db = MetabDBSetUp(user, password, database)
+    db.drop_all_tables()
     db.create_all_tables()
     db.insert_all()
     
