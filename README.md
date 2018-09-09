@@ -13,8 +13,7 @@ To run this file, input the raw/txt file directory as an argument eg.
 
 * A software directory is needed in the main directory with ProteoWizard and Mzmine-2.32 installed and named as follows.
 
-Software/Mzmine-2.32
-Software/ProteoWizard
+Software/Mzmine-2.32 and Software/ProteoWizard
 
 ### Next Development
 * Demo visualizations in current interface
