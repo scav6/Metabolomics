@@ -1,0 +1,9 @@
+mz: mass to charge ratio
+rt: retention time
+height: spectra peak height
+area: spectra peak area
+fwhm: full width half maximum
+tf: tailing factor
+af: asymmetry factor
+mz_min: mass to charge minimum
+mz_max: mass to charge maximum

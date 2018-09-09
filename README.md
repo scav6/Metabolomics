@@ -22,7 +22,7 @@ Software
 * Demo visualizations in current interface
 
 ### Class Diagram
-![ER](MetabolomicsClassDiagram.png)
+![Class](MetabolomicsClassDiagram.png)
 
 ### ER Diagram
 ![ER](MetabolomicsQCERDiagram.png)
