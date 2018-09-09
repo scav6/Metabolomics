@@ -11,12 +11,10 @@ To run this file, input the raw/txt file directory as an argument eg.
 
   _python Metabolomics_Process_Raw_Files.py "Z:\Metabolomics\QC_runs\C1_Clayton"_
 
-* A software directory is needed in the main directory with ProteoWizard and Mzmine-2.32 installed.
-The directory structure needed is:
+* A software directory is needed in the main directory with ProteoWizard and Mzmine-2.32 installed and named as follows.
 
-Software
-    Mzmine-2.32
-    ProteoWizard
+Software/Mzmine-2.32
+Software/ProteoWizard
 
 ### Next Development
 * Demo visualizations in current interface
