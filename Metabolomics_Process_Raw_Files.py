@@ -12,25 +12,19 @@ class ProcessRawFile:
         self.datafile = datafile
 
     def run(self):
+        # make and set folder for outfiles
+        os.chdir(self.fs.out_dir)
+        if not os.path.isdir(self.fs.out_dir + "\\" + self.datafile):
+            os.makedirs(self.datafile)
+        self.outfiles_dir = self.fs.out_dir + "\\" + self.datafile
 
-        if self.insert_qc_run_data():
-
-            # make and set folder for outfiles
-            os.chdir(self.fs.out_dir)
-            if not os.path.isdir(self.fs.out_dir + "\\" + self.datafile):
-                os.makedirs(self.datafile)
-            self.outfiles_dir = self.fs.out_dir + "\\" + self.datafile
-
-            # get and insert data
-            self.run_msconvert()
-            self.create_xml()
-            self.run_mzmine()
-            self.insert_csv()
-            print("Inserted Data for " + self.datafile)
-            return True
-        else:
-            print("No Test Report for raw file")
-            return False
+        # get and insert data
+        self.insert_qc_run_data()
+        self.run_msconvert()
+        self.create_xml()
+        self.run_mzmine()
+        self.insert_csv()
+        print("Inserted Data for " + self.datafile)
 
     def run_msconvert(self):
         '''Creates .mzXML files in OutFiles'''
@@ -125,77 +119,46 @@ class ProcessRawFile:
                                 print(e)
                                 print(i + 10)
 
-    def check_for_text_report(self):
-        text_files = glob.glob(fs.in_dir + '/QC_Metabolomics_*.txt')
-        for file in text_files:
-            if file[35:-37] == self.datafile:
-                return file
-        return False
-
-    def get_run_date(self):
-        check_file = self.check_for_text_report()
-        if check_file:
-            with open(check_file,'r') as infile:
-                for line in infile:
-                    in_data = line.strip().split(';')
-                    if in_data[0].strip() == 'Acquisition Date:':
-                        return self.convert_to_mysql_datetime_string(in_data[1].strip())
-        else:
-            return False
-
-    def convert_to_mysql_datetime_string(self, date):
-        # https://dev.mysql.com/doc/refman/8.0/en/date-and-time-literals.html
-        # YY-MM-DD HH:MM:SS
-        # 2014-02-28 08:14:57
-        # YYMMDDHHMMSS
-        # check again with batch input
-        meridian = date[-2:]
-        month = date[:2]
-        day = date[3:-15]
-        year = date[6:-12]
-        hh = date[9:-9]
-        mm = date[12:-6]
-        ss = date[15:-3]
-
-        if meridian.upper() == 'PM' and hh != '12':
-            hh = str(int(hh) + 12)
-
-        run_date = year + month + day + hh + mm + ss
-        return run_date
+    def get_run_date_time(self):
+        return self.datafile[-12:]
 
     def insert_qc_run_data(self):
 
-        run_date = self.get_run_date()
+        run_date = self.get_run_date_time()
 
-        if run_date:
-            # CONVERT('2014-02-28 08:14:57', DATETIME)
-            sql = "INSERT INTO metab_qc_run VALUES(NULL,'" + self.datafile + "', CONVERT('" + str(run_date) + "', DATETIME))"
-            try:
-                # add a check here or remove run_id to avoid accidental duplicates
-                self.db.cursor.execute(sql)
-            except Exception as e:
-                print(e)
+        # CONVERT('2014-02-28 08:14:57', DATETIME)
+        sql = "INSERT INTO metab_qc_run VALUES(NULL,'" + self.datafile + "', CONVERT('" + str(run_date) + "', DATETIME))"
+        try:
+            # add a check here or remove run_id to avoid accidental duplicates
+            self.db.cursor.execute(sql)
+        except Exception as e:
+            print(e)
 
-            self.db.db.commit()
-            return True
-        else:
-            return False
+        self.db.db.commit()
+        return True
 
 
 if __name__ == "__main__":
 
     user = "root"
-    password = "password"
+    password = "raja2417"
     database = "metabqc"
     db = MetabDBSetUp(user, password, database)
     fs = FileSystem(sys.argv[1])
     raw_files = glob.glob(fs.in_dir + '/QC_Metabolomics_*.raw')
-
+    print(len(raw_files))
 
     #LOOP Through all Raws in Folder
 
     for file in raw_files:
         id = file[35:-4]
-        raw = ProcessRawFile(id, fs, db)
-        raw.run()
+        if id == 'QC_Metabolomics_180608162749_180612103257':
+            print("Found")
+            raw = ProcessRawFile(id, fs, db)
+            raw.run()
+        else:
+            print("Skippy...!")
 
+
+    # Handles duel dates eg. QC_Metabolomics_180608162749_180612103257
+    # by using second date, uses full name in OutFiles folder

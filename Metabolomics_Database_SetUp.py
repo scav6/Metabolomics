@@ -214,7 +214,7 @@ class MetabDBSetUp:
 
 if __name__ == "__main__":
     user = "root"
-    password = "password"
+    password = "raja2417"
     database = "metabqc"
     db = MetabDBSetUp(user, password, database)
     db.set_up()
